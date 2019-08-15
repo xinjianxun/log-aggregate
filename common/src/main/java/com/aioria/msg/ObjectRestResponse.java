@@ -1,8 +1,6 @@
 package com.aioria.msg;
 
-/**
- * Created by Ace on 2017/6/11.
- */
+
 public class ObjectRestResponse<T> extends BaseResponse {
 
     T data;
