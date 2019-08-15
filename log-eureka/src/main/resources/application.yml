@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: eureka-server
+# 自己设置一个端口号，方便之后访问
+server:
+  port: 8761
+# Eureka-server的简单配置
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  service-url:
+    defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
