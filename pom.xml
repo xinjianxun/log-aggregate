@@ -13,6 +13,7 @@
         <module>log-B</module>
         <module>common</module>
         <module>log-eureka</module>
+        <module>gate-way</module>
     </modules>
 
     <parent>

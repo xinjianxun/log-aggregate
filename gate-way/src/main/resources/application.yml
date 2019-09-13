@@ -1,0 +1,39 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: gate-way
+  cloud:
+     gateway:
+       discovery:
+         locator:
+           lowerCaseServiceId: true
+           enabled: true
+       routes:
+        # =====================================
+        - id: Log-A
+          uri: lb://Log-A
+          order: 8000
+          predicates:
+          - Path=/api/Log-A/**
+          filters:
+          - StripPrefix=2
+        - id: Log-B
+          uri: lb://Log-B
+          order: 8001
+          predicates:
+          - Path=/api/Log-B/**
+          filters:
+          - StripPrefix=2
+
+eureka:
+  client:         #客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+auth:
+  user:
+    token-header: Authorization
+gate:
+  ignore:
+    startWith: /xxx/xxx

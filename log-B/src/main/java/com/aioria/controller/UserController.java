@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -17,7 +19,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id}")
-    public ObjectRestResponse getUser(@PathVariable Long id) throws Exception{
+    public ObjectRestResponse getUser(@PathVariable Long id, HttpServletRequest request) throws Exception{
+        String header = request.getHeader("Authorization");
         ObjectRestResponse restResponse = new ObjectRestResponse();
         User user = userService.getUser(id);
         restResponse.data(user).rel(true);

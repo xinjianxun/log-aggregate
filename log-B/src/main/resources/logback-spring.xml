@@ -35,35 +35,35 @@
         </triggeringPolicy>
     </appender>
 
-    <appender name="logstash"
-              class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>${logstashAddr}</destination>
-        <!-- 日志输出编码 -->
-        <encoder
-                class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <providers>
-                <timestamp>
-                    <timeZone>UTC</timeZone>
-                </timestamp>
-                <pattern>
-                    <pattern>
-                        {
-                        "severity": "%level",
-                        "service": "${springAppName:-}",
-                        "trace": "%X{X-B3-TraceId:-}",
-                        "span": "%X{X-B3-SpanId:-}",
-                        "parent": "%X{X-B3-ParentSpanId:-}",
-                        "exportable": "%X{X-Span-Export:-}",
-                        "pid": "${PID:-}",
-                        "thread": "%thread",
-                        "class": "%logger{50}",
-                        "rest": "%msg%n"
-                        }
-                    </pattern>
-                </pattern>
-            </providers>
-        </encoder>
-    </appender>
+    <!--<appender name="logstash"-->
+              <!--class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+        <!--<destination>${logstashAddr}</destination>-->
+        <!--&lt;!&ndash; 日志输出编码 &ndash;&gt;-->
+        <!--<encoder-->
+                <!--class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+            <!--<providers>-->
+                <!--<timestamp>-->
+                    <!--<timeZone>UTC</timeZone>-->
+                <!--</timestamp>-->
+                <!--<pattern>-->
+                    <!--<pattern>-->
+                        <!--{-->
+                        <!--"severity": "%level",-->
+                        <!--"service": "${springAppName:-}",-->
+                        <!--"trace": "%X{X-B3-TraceId:-}",-->
+                        <!--"span": "%X{X-B3-SpanId:-}",-->
+                        <!--"parent": "%X{X-B3-ParentSpanId:-}",-->
+                        <!--"exportable": "%X{X-Span-Export:-}",-->
+                        <!--"pid": "${PID:-}",-->
+                        <!--"thread": "%thread",-->
+                        <!--"class": "%logger{50}",-->
+                        <!--"rest": "%msg%n"-->
+                        <!--}-->
+                    <!--</pattern>-->
+                <!--</pattern>-->
+            <!--</providers>-->
+        <!--</encoder>-->
+    <!--</appender>-->
 
 
 
@@ -79,10 +79,10 @@
     <!--</appender>-->
 
 
-    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="logstash" />
+    <!--<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">-->
+        <!--<appender-ref ref="logstash" />-->
 
-    </appender>
+    <!--</appender>-->
 
 
 
@@ -97,7 +97,7 @@
     <springProfile name="pro">
         <root level="INFO">
             <appender-ref ref="consoleAppender"/>
-            <appender-ref ref="ASYNC"/>
+            <!--<appender-ref ref="ASYNC"/>-->
         </root>
     </springProfile>
 

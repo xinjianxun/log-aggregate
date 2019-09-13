@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 @RestController
 @RequestMapping("/log")
 @Slf4j
@@ -21,7 +24,8 @@ public class LogController {
     private UserClient userClient;
 
     @RequestMapping("info")
-    public String logInfo() {
+    public String logInfo(HttpServletRequest request) {
+        String heaaders = request.getHeader("Authorization");
         logAService.logInfo();
         return "测试日志打印";
     }

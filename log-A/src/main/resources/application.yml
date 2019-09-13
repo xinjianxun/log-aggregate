@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: Log-A
+  main:
+    allow-bean-definition-overriding: true #spring boot2.1做了修改，解决多个Feign引用同一个服务地址的问题
   sleuth:
       web:
         client:
@@ -21,4 +23,27 @@ eureka:
   client:         #客户端进行Eureka注册的配置
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka/
-
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+ribbon:
+  ReadTimeout: 15000
+  ConnectTimeout: 15000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+management:
+  endpoint:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: '*'
